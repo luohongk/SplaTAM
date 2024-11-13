@@ -2,7 +2,7 @@
 
 <p align="center">
 
-  <h1 align="center">SplaTAM: Splat, Track & Map 3D Gaussians for Dense RGB-D SLAM</h1>
+<h1 align="center">SplaTAM: Splat, Track & Map 3D Gaussians for Dense RGB-D SLAM</h1>
   <h3 align="center">CVPR 2024</h3>
   <p align="center">
     <a href="https://nik-v9.github.io/"><strong>Nikhil Keetha</strong></a>
@@ -31,9 +31,10 @@
 
 <br>
 
-## Stay Tuned for a Faster and Better Variant of SplaTAM! 
+## Stay Tuned for a Faster and Better Variant of SplaTAM!
 
 <!-- TABLE OF CONTENTS -->
+
 <details open="open" style='padding: 10px; border-radius:5px 30px 30px 5px; border-style: solid; border-width: 1px;'>
   <summary>Table of Contents</summary>
   <ol>
@@ -67,9 +68,20 @@
 ## Installation
 
 ##### (Recommended)
+
 SplaTAM has been benchmarked with Python 3.10, Torch 1.12.1 & CUDA=11.6. However, Torch 1.12 is not a hard requirement and the code has also been tested with other versions of Torch and CUDA such as Torch 2.3.0 & CUDA 12.1.
 
-The simplest way to install all dependences is to use [anaconda](https://www.anaconda.com/) and [pip](https://pypi.org/project/pip/) in the following steps: 
+The simplest way to install all dependences is to use [anaconda](https://www.anaconda.com/) and [pip](https://pypi.org/project/pip/) in the following steps:
+
+如果是cuda12.1,Torch 2.3.0,用如下代码安装
+
+```
+conda create -n splatam python=3.10
+conda activate splatam
+conda install -c "nvidia/label/cuda-12.1" cuda-toolkit
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+```
 
 ```bash
 conda create -n splatam python=3.10
@@ -93,7 +105,6 @@ For installation on Windows using Git bash, please refer to the [instructions sh
 
 We also provide a docker image. We recommend using a venv to run the code inside a docker image:
 
-
 ```bash
 docker pull nkeetha/splatam:v1
 bash bash_scripts/start_docker.bash
@@ -107,6 +118,7 @@ pip install -r venv_requirements.txt
 ```
 
 Setting up a singularity container is similar:
+
 ```bash
 cd </path/to/singularity/folder/>
 singularity pull splatam.sif docker://nkeetha/splatam:v1
@@ -125,11 +137,11 @@ pip install -r venv_requirements.txt
 
 ### Online
 
-You can SplaTAM your own environment with an iPhone or LiDAR-equipped Apple device by downloading and using the <a href="https://apps.apple.com/au/app/nerfcapture/id6446518379">NeRFCapture</a> app.
+You can SplaTAM your own environment with an iPhone or LiDAR-equipped Apple device by downloading and using the `<a href="https://apps.apple.com/au/app/nerfcapture/id6446518379">`NeRFCapture`</a>` app.
 
 Make sure that your iPhone and PC are connected to the same WiFi network, and then run the following command:
 
- ```bash
+```bash
 bash bash_scripts/online_demo.bash configs/iphone/online_demo.py
 ```
 
@@ -246,10 +258,11 @@ Please follow the data downloading procedure on the [ScanNet](http://www.scan-ne
                     ├── ...
                     └── ...
 ```
+
 </details>
 
+We use the following sequences:
 
-We use the following sequences: 
 ```
 scene0000_00
 scene0059_00
@@ -260,10 +273,10 @@ scene0207_00
 
 ### ScanNet++
 
-Please follow the data downloading and image undistortion procedure on the <a href="https://kaldir.vc.in.tum.de/scannetpp/">ScanNet++</a> website. 
-Additionally for undistorting the DSLR depth images, we use our <a href="https://github.com/Nik-V9/scannetpp">own variant of the official ScanNet++ processing code</a>. We will open a pull request to the official ScanNet++ repository soon.
+Please follow the data downloading and image undistortion procedure on the `<a href="https://kaldir.vc.in.tum.de/scannetpp/">`ScanNet++`</a>` website.
+Additionally for undistorting the DSLR depth images, we use our `<a href="https://github.com/Nik-V9/scannetpp">`own variant of the official ScanNet++ processing code`</a>`. We will open a pull request to the official ScanNet++ repository soon.
 
-We use the following sequences: 
+We use the following sequences:
 
 ```
 8b5caf3398
@@ -274,11 +287,11 @@ For b20a261fdf, we use the first 360 frames, due to an abrupt jump/teleportation
 
 ### Replica-V2
 
-We use the Replica-V2 dataset from vMAP to evaluate novel view synthesis. Please download the pre-generated replica sequences from <a href="https://github.com/kxhit/vMAP">vMAP</a>.
+We use the Replica-V2 dataset from vMAP to evaluate novel view synthesis. Please download the pre-generated replica sequences from `<a href="https://github.com/kxhit/vMAP">`vMAP`</a>`.
 
 ## Benchmarking
 
-For running SplaTAM, we recommend using [weights and biases](https://wandb.ai/) for the logging. This can be turned on by setting the `wandb` flag to True in the configs file. Also make sure to specify the path `wandb_folder`. If you don't have a wandb account, first create one. Please make sure to change the `entity` config to your wandb account. Each scene has a config folder, where the `input_folder` and `output` paths need to be specified. 
+For running SplaTAM, we recommend using [weights and biases](https://wandb.ai/) for the logging. This can be turned on by setting the `wandb` flag to True in the configs file. Also make sure to specify the path `wandb_folder`. If you don't have a wandb account, first create one. Please make sure to change the `entity` config to your wandb account. Each scene has a config folder, where the `input_folder` and `output` paths need to be specified.
 
 Below, we show some example run commands for one scene from each dataset. After SLAM, the trajectory error will be evaluated along with the rendering metrics. The results will be saved to `./experiments` by default.
 
@@ -358,7 +371,7 @@ We thank the authors of the following repositories for their open-source code:
   - [Dynamic 3D Gaussians](https://github.com/JonathonLuiten/Dynamic3DGaussians)
   - [3D Gaussian Splating](https://github.com/graphdeco-inria/gaussian-splatting)
 - Dataloaders
-  - [GradSLAM & ConceptFusion](https://github.com/gradslam/gradslam/tree/conceptfusion)
+  - [GradSLAM &amp; ConceptFusion](https://github.com/gradslam/gradslam/tree/conceptfusion)
 - Baselines
   - [Nice-SLAM](https://github.com/cvg/nice-slam)
   - [Point-SLAM](https://github.com/eriksandstroem/Point-SLAM)
@@ -377,6 +390,7 @@ If you find our paper and code useful, please cite us:
 ```
 
 ## Developers
+
 - [Nik-V9](https://github.com/Nik-V9) ([Nikhil Keetha](https://nik-v9.github.io/))
 - [JayKarhade](https://github.com/JayKarhade) ([Jay Karhade](https://jaykarhade.github.io/))
 - [JonathonLuiten](https://github.com/JonathonLuiten) ([Jonathan Luiten](https://www.vision.rwth-aachen.de/person/216/))
